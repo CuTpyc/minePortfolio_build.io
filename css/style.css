@@ -581,6 +581,12 @@ summary {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 12px;
 }
 
@@ -684,13 +690,6 @@ summary {
   color: #0d0f16;
   font-weight: 300;
   position: relative;
-}
-
-.hero__worker > .line {
-  position: absolute;
-  right: 0;
-  top: 0;
-  text-align: center;
 }
 
 .hero__person {
@@ -822,6 +821,16 @@ summary {
   line-height: 93.5%;
 }
 
+.works__slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .works__slide {
   max-width: 30.625rem;
   width: 100%;
@@ -861,7 +870,7 @@ summary {
 .works__image > picture > img {
   border: 0.0625rem solid #2d2c2c;
   border-radius: 1.25rem;
-  max-width: 18.75rem;
+  max-width: 25rem;
 }
 
 .works__image > img {
@@ -931,6 +940,35 @@ summary {
   max-width: 1.875rem;
   max-width: 1.875rem;
   border-radius: 1.25rem;
+}
+
+.swiper-pagination {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 12px;
+  height: 25px;
+  margin: 0 0 1.5rem;
+}
+
+.swiper-pagination-bullet {
+  background-color: #131212;
+  position: relative;
+  border-radius: 25px;
+}
+
+.swiper-pagination-bullet-active::before {
+  content: "";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  border-radius: 15px;
+  background-color: #f6f6f6;
 }
 
 .view-github {
@@ -1403,6 +1441,54 @@ summary {
   display: none !important;
 }
 
+.swiper {
+  overflow: hidden;
+}
+
+.swiper-initialized {
+  -ms-touch-action: pan-y;
+      touch-action: pan-y;
+}
+
+.swiper-wrapper {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.swiper-vertical .swiper-wrapper {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.swiper-autoheight .swiper-wrapper {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.swiper-initialized .swiper-slide {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.swiper-android .swiper-slide,
+.swiper-android .swiper-wrapper {
+  -webkit-transform: translate3d(0px, 0, 0);
+          transform: translate3d(0px, 0, 0);
+}
+
+.swiper-button-lock {
+  display: none !important;
+}
+
 @media (min-width: 47.99875em) {
   .spollers__item-content {
     max-width: 25rem;
@@ -1443,6 +1529,34 @@ summary {
 
   .works__list {
     margin-left: 2.5rem;
+  }
+
+  .swiper-pagination {
+    margin-top: 2.5rem;
+  }
+
+  .swiper-pagination-bullet {
+    width: 1.5625rem;
+  }
+
+  .swiper-pagination-bullet {
+    height: 1.5625rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    top: 0.3125rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    left: 0.3125rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    width: 0.9375rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    height: 0.9375rem;
   }
 
   .about__body {
@@ -1785,6 +1899,10 @@ summary {
     max-height: 34.375rem;
   }
 
+  .works__image > picture > img {
+    max-width: 15.625rem;
+  }
+
   .works__image > img {
     max-width: 15.625rem;
   }
@@ -1825,6 +1943,34 @@ summary {
 
   .works__list {
     margin-left: 1.25rem;
+  }
+
+  .swiper-pagination {
+    margin-top: 1.25rem;
+  }
+
+  .swiper-pagination-bullet {
+    width: 0.9375rem;
+  }
+
+  .swiper-pagination-bullet {
+    height: 0.9375rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    top: 0.21875rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    left: 0.21875rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    width: 0.46875rem;
+  }
+
+  .swiper-pagination-bullet-active::before {
+    height: 0.46875rem;
   }
 
   .about__body {
@@ -1879,6 +2025,10 @@ summary {
 
   .works__block {
     max-height: 43.75rem;
+  }
+
+  .works__image > picture > img {
+    max-width: 25rem;
   }
 
   .works__image > img {
@@ -1952,6 +2102,18 @@ summary {
 @supports not (max-height: clamp( 34.375rem , 31.1737804878rem  +  18.2926829268vw , 43.75rem )) {
     .works__block {
       max-height: calc(34.375rem + 9.375 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (max-width: clamp( 15.625rem , 12.4237804878rem  +  18.2926829268vw , 25rem )) {
+    .works__image > picture > img {
+      max-width: clamp( 15.625rem , 12.4237804878rem  +  18.2926829268vw , 25rem );
+    }
+}
+
+@supports not (max-width: clamp( 15.625rem , 12.4237804878rem  +  18.2926829268vw , 25rem )) {
+    .works__image > picture > img {
+      max-width: calc(15.625rem + 9.375 * (100vw - 17.5rem) / 51.25);
     }
 }
 
@@ -2074,6 +2236,90 @@ summary {
 @supports not (margin-left: clamp( 1.25rem , 0.8231707317rem  +  2.4390243902vw , 2.5rem )) {
     .works__list {
       margin-left: calc(1.25rem + 1.25 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (margin-top: clamp( 1.25rem , 0.8231707317rem  +  2.4390243902vw , 2.5rem )) {
+    .swiper-pagination {
+      margin-top: clamp( 1.25rem , 0.8231707317rem  +  2.4390243902vw , 2.5rem );
+    }
+}
+
+@supports not (margin-top: clamp( 1.25rem , 0.8231707317rem  +  2.4390243902vw , 2.5rem )) {
+    .swiper-pagination {
+      margin-top: calc(1.25rem + 1.25 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (width: clamp( 0.9375rem , 0.7240853659rem  +  1.2195121951vw , 1.5625rem )) {
+    .swiper-pagination-bullet {
+      width: clamp( 0.9375rem , 0.7240853659rem  +  1.2195121951vw , 1.5625rem );
+    }
+}
+
+@supports not (width: clamp( 0.9375rem , 0.7240853659rem  +  1.2195121951vw , 1.5625rem )) {
+    .swiper-pagination-bullet {
+      width: calc(0.9375rem + 0.625 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (height: clamp( 0.9375rem , 0.7240853659rem  +  1.2195121951vw , 1.5625rem )) {
+    .swiper-pagination-bullet {
+      height: clamp( 0.9375rem , 0.7240853659rem  +  1.2195121951vw , 1.5625rem );
+    }
+}
+
+@supports not (height: clamp( 0.9375rem , 0.7240853659rem  +  1.2195121951vw , 1.5625rem )) {
+    .swiper-pagination-bullet {
+      height: calc(0.9375rem + 0.625 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (top: clamp( 0.21875rem , 0.1867378049rem  +  0.1829268293vw , 0.3125rem )) {
+    .swiper-pagination-bullet-active::before {
+      top: clamp( 0.21875rem , 0.1867378049rem  +  0.1829268293vw , 0.3125rem );
+    }
+}
+
+@supports not (top: clamp( 0.21875rem , 0.1867378049rem  +  0.1829268293vw , 0.3125rem )) {
+    .swiper-pagination-bullet-active::before {
+      top: calc(0.21875rem + 0.09375 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (left: clamp( 0.21875rem , 0.1867378049rem  +  0.1829268293vw , 0.3125rem )) {
+    .swiper-pagination-bullet-active::before {
+      left: clamp( 0.21875rem , 0.1867378049rem  +  0.1829268293vw , 0.3125rem );
+    }
+}
+
+@supports not (left: clamp( 0.21875rem , 0.1867378049rem  +  0.1829268293vw , 0.3125rem )) {
+    .swiper-pagination-bullet-active::before {
+      left: calc(0.21875rem + 0.09375 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (width: clamp( 0.46875rem , 0.3086890244rem  +  0.9146341463vw , 0.9375rem )) {
+    .swiper-pagination-bullet-active::before {
+      width: clamp( 0.46875rem , 0.3086890244rem  +  0.9146341463vw , 0.9375rem );
+    }
+}
+
+@supports not (width: clamp( 0.46875rem , 0.3086890244rem  +  0.9146341463vw , 0.9375rem )) {
+    .swiper-pagination-bullet-active::before {
+      width: calc(0.46875rem + 0.46875 * (100vw - 17.5rem) / 51.25);
+    }
+}
+
+@supports (height: clamp( 0.46875rem , 0.3086890244rem  +  0.9146341463vw , 0.9375rem )) {
+    .swiper-pagination-bullet-active::before {
+      height: clamp( 0.46875rem , 0.3086890244rem  +  0.9146341463vw , 0.9375rem );
+    }
+}
+
+@supports not (height: clamp( 0.46875rem , 0.3086890244rem  +  0.9146341463vw , 0.9375rem )) {
+    .swiper-pagination-bullet-active::before {
+      height: calc(0.46875rem + 0.46875 * (100vw - 17.5rem) / 51.25);
     }
 }
 
