@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240205191902">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240417220723">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -172,6 +172,8 @@
 							<!-- Оболонка слайдера -->
 							<div class="works__slider swiper">
 								<!-- Частина слайдера, що рухається -->
+
+
 								<div class="works__wrapper swiper-wrapper">
 									<!-- Слайд -->
 									<div class="works__slide swiper-slide">
@@ -346,10 +348,7 @@
 								<!-- Якщо потрібна пагінація -->
 								<div class="swiper-pagination"></div>
 								<!-- Якщо потрібна навігація (ліворуч/праворуч) -->
-								<button type="button" class="swiper-button-prev"></button>
-								<button type="button" class="swiper-button-next"></button>
-								<!-- Якщо потрібен скролбар -->
-								<div class="swiper-scrollbar"></div>
+
 							</div>
 						</div>
 						<div class="works__allWorks">
@@ -373,7 +372,7 @@
 									<span>About me</span>
 								</div>
 								<div class="quote-block__quote">
-									<span>I look at usual things with my unsual eyes.</span>
+									<span>I look at usual things with my unusual eyes.</span>
 								</div>
 
 							</div>
@@ -437,8 +436,8 @@
 					</div>
 					<div class="footer__subscriptions subscriptions-items">
 						<div class="subscriptions-items__title">Subscribe to my emailing list</div>
-						<form class="subscriptions-items form-items">
-							<input class="form-items__input" type="text" name="form[email]" data-error="Error" placeholder="Enter your email" class="input">
+						<form class="subscriptions-items form-items" id="emailSend">
+							<input class="form-items__input _req" type="text" name="form[email]" data-error="Error" placeholder="Enter your email" class="input">
 							<button class="form-items__button button" button-animation>
 								<span class="buttondefault">Send</span>
 								<span class="success">Sent</span>
@@ -467,9 +466,144 @@
 			</div>
 		</footer>
 	</div>
-	<script src="https://kit.fontawesome.com/c40451a443.js?_v=20240205191902" crossorigin="anonymous"></script>
-	<script src="js/app.min.js?_v=20240205191902"></script>
-	<script src="https://circletype.labwire.ca/dist/circletype.min.js?_v=20240205191902"></script>
+	<!-- Стилі для body -->
+	<style>
+		.lock body {
+			overflow: hidden;
+			touch-action: none;
+			overscroll-behavior: none;
+		}
+
+		.loading body {
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.loaded body {
+			transition: opacity 0.5s ease 0s;
+			opacity: 1;
+			visibility: visible;
+		}
+	</style>
+	<div id="fls-preloader">
+		<!-- Документація: https://template.fls.guru/template-docs/modul-preloader.html -->
+		<!-- Стилі для прелоадера -->
+		<style>
+			* {
+				padding: 0px;
+				margin: 0px;
+				border: 0px;
+			}
+
+			*,
+			*:before,
+			*:after {
+				box-sizing: border-box;
+			}
+
+			html {
+				overflow: hidden;
+				touch-action: none;
+				overscroll-behavior: none;
+			}
+
+			/* Головний блок */
+			.preloader {
+				/*фиксированное позиционирование*/
+				position: fixed;
+				/* координаты положения */
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				/* фоновый цвет элемента */
+				background: #e0e0e0;
+				/* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+				z-index: 1001;
+			}
+
+			.preloader__row {
+				position: relative;
+				top: 50%;
+				left: 50%;
+				width: 70px;
+				height: 70px;
+				margin-top: -35px;
+				margin-left: -35px;
+				text-align: center;
+				animation: preloader-rotate 2s infinite linear;
+			}
+
+			.preloader__item {
+				position: absolute;
+				display: inline-block;
+				top: 0;
+				background-color: #131212;
+				border-radius: 100%;
+				width: 35px;
+				height: 35px;
+				animation: preloader-bounce 2s infinite ease-in-out;
+			}
+
+			.preloader__item:last-child {
+				top: auto;
+				bottom: 0;
+				animation-delay: -1s;
+			}
+
+			@keyframes preloader-rotate {
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+			@keyframes preloader-bounce {
+
+				0%,
+				100% {
+					transform: scale(0);
+				}
+
+				50% {
+					transform: scale(1);
+				}
+			}
+
+			.loaded_hiding .preloader {
+				transition: 0.3s opacity;
+				opacity: 0;
+			}
+
+			.loaded .preloader {
+				display: none;
+			}
+		</style>
+		<!-- Скріпт прелоадера -->
+		<div class="preloader">
+			<div class="preloader__row">
+				<div class="preloader__item"></div>
+				<div class="preloader__item"></div>
+			</div>
+		</div>
+		<script>
+			window.onload = function() {
+				document.body.classList.add('loaded_hiding');
+
+				window.setTimeout(function() {
+					document.body.classList.add('loaded');
+					document.body.classList.remove('loaded_hiding');
+
+				}, 500);
+				document.getElementsByTagName('html')[0].style.overflow = 'visible';
+				document.getElementsByTagName('html')[0].style.touchAction = 'auto';
+				document.getElementsByTagName('html')[0].style.overscrollBehavior = 'auto';
+
+			}
+		</script>
+	</div>
+	<script src="https://kit.fontawesome.com/c40451a443.js?_v=20240417220723" crossorigin="anonymous"></script>
+	<script src="js/app.min.js?_v=20240417220723"></script>
+	<script src="https://circletype.labwire.ca/dist/circletype.min.js?_v=20240417220723"></script>
 </body>
 
 </html>
